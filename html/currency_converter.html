@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Converter</title>
+    <link rel="stylesheet" href="../css/currency_converter.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Currency Converter</h1>
+        <div class="converter-form">
+            <div class="form-group">
+                <label for="fromCurrency">From:</label>
+                <select id="fromCurrency" onchange="updateAmountPlaceholder()">
+                    <option value="LKR">Sri Lankan Rupee (LKR)</option>
+                    <option value="USD">US Dollar (USD)</option>
+                    <option value="EUR">Euro (EUR)</option>
+                    <option value="GBP">British Pound (GBP)</option>
+                    <!-- Add more currencies as needed -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="toCurrency">To:</label>
+                <select id="toCurrency">
+                    <option value="USD">US Dollar (USD)</option>
+                    <option value="LKR">Sri Lankan Rupee (LKR)</option>
+                    <option value="EUR">Euro (EUR)</option>
+                    <option value="GBP">British Pound (GBP)</option>
+                    <!-- Add more currencies as needed -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="amount">Amount:</label>
+                <div class="amount-input-wrapper">
+                    <input type="number" id="amount" placeholder="Enter amount">
+                    <span id="amountCurrencySymbol" class="currency-symbol">LKR</span>
+                </div>
+            </div>
+            <button onclick="convertCurrency()">Convert</button>
+            <button onclick="goBack()">Back</button>
+        </div>
+        <div id="result"></div>
+    </div>
+    <script src="../javaScript/currency_converter.js"></script>
+</body>
+</html>

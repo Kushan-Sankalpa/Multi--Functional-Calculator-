@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Calculator</title>
+    <link rel="stylesheet" href="../css/advanced_calculator.css">
+    <script src="../javaScript//area_calculations.js" defer></script>
+    <script src="../javaScript/perimeter_calculations.js" defer></script>
+    <script src="../javaScript/volume_calculations.js" defer></script>
+    <script src="../javaScript/active.js" defer></script>
+</head>
+<body onload="initializePage()">
+    <div class="sidebar">
+        <h2>Advanced Options</h2>
+        <ul>
+            <li id="findAreaMenu" onclick="showSection('find_area'); selectAreaOption('circle');">Find Area</li>
+            <li id="findPerimeterMenu" onclick="showSection('find_perimeter'); selectPerimeterOption('circle');">Find Perimeter</li>
+            <li id="findVolumeMenu" onclick="showSection('find_volume'); selectVolumeOption('cuboid');">Find Volume</li>
+        </ul>
+        <button onclick="goBack()" class="back-button">Back to Main Menu</button>
+    </div>
+    <div class="content">
+        <!-- Area Section -->
+        <div id="find_area" class="section">
+            <h2>Find Area</h2>
+            <select id="areaOptions" onchange="showAreaForm(this.value)">
+                <option value="circle">Circle</option>
+                <option value="rectangle">Rectangle</option>
+                <option value="square">Square</option>
+                <option value="triangle">Triangle</option>
+                <option value="circular_sector">Circular Sector</option>
+                <option value="rhombus">Rhombus</option>
+                <option value="parallelogram">Parallelogram</option>
+                <option value="trapezoid">Trapezoid</option>
+                <option value="hexagon">Hexagon</option>
+                <option value="octagon">Octagon</option>
+                <option value="polygon">Polygon</option>
+                <option value="sphere">Sphere</option>
+                <option value="cuboid">Cuboid</option>
+                <option value="cylinder">Cylinder</option>
+                <option value="cone">Cone</option>
+            </select>
+<!-- Circle Area -->
+<div id="circleForm" class="areaForm">
+    <h3>Find Area of Circle</h3>
+    <img src="../images/Area-of-a-Circle-removebg-preview.png" alt="Area of Circle Formula" class="formula-image">
+    <p>Formula: πr²</p>
+    <input type="number" id="circleRadius" placeholder="Enter radius">
+    
+    <select id="circleAreaUnit" class="unit-dropdown" >
+        <option value="cm²">cm²</option>
+        <option value="m²">m²</option>
+    </select>
+    <br><br>
+    <button onclick="calculateCircleArea()">Calculate Area</button>
+    <p id="circleAreaResult"></p>
+</div>
+
+<!-- Rectangle Area -->
+<div id="rectangleForm" class="areaForm" style="display:none;">
+    <h3>Find Area of Rectangle</h3>
+    <img src="../images/Area-of-a-Rectangle-removebg-preview.png" alt="Area of Rectangle Formula" class="formula-image">
+    <p>Formula: l × w</p>
+    <input type="number" id="rectangleLength" placeholder="Enter length">
+    <input type="number" id="rectangleWidth" placeholder="Enter width">
+    <br>
+    <select id="rectangleAreaUnit" class="unit-dropdown">
+        
+        <option value="cm²">cm²</option>
+        <option value="m²">m²</option>
+    </select>
+    <br><br>
+    <button onclick="calculateRectangleArea()">Calculate Area</button>
+    <p id="rectangleAreaResult"></p>
+</div>
+
+<!-- Square Area -->
+<div id="squareForm" class="areaForm" style="display:none;">
+    <h3>Find Area of Square</h3>
+    <img src="../images/area-of-a-square4-1-1613386204.png" alt="Area of Square Formula" class="formula-image">
+    <p>Formula: a²</p>
+    <input type="number" id="squareSide" placeholder="Enter side length">
+    <select id="squareAreaUnit" class="unit-dropdown">
+        <option value="cm²">cm²</option>
+        <option value="m²">m²</option>
+    </select>
+    <br><br>
+    <button onclick="calculateSquareArea()">Calculate Area</button>
+    <p id="squareAreaResult"></p>
+</div>
+
+<!-- Triangle Area -->
+<div id="triangleForm" class="areaForm" style="display:none;">
+    <h3>Find Area of Triangle</h3>
+    <img src="../images/area-of-a-triangle-1615858257.png" alt="Area of Triangle Formula" class="formula-image">
+    <p>Formula: ½ × base × height</p>
+    <input type="number" id="triangleBase" placeholder="Enter base">
+    <input type="number" id="triangleHeight" placeholder="Enter height">
+    <br>
+    <select id="triangleAreaUnit" class="unit-dropdown">
+        <option value="cm²">cm²</option>
+        <option value="m²">m²</option>
+    </select>
+    <br><br>
+    <button onclick="calculateTriangleArea()">Calculate Area</button>
+    <p id="triangleAreaResult"></p>
+</div>
+
+<!-- Circular Sector Area -->
+<div id="circular_sectorForm" class="areaForm" style="display:none;">
+    <h3>Find Area of Circular Sector</h3>
+    <img src="../images/area-of-sector-of-a-circle-1637917885.png" alt="Area of Circular Sector Formula" class="formula-image">
+    <p>Formula: ½ × r² × θ (in radians)</p>
+    <input type="number" id="sectorRadius" placeholder="Enter radius">
+    <input type="number" id="sectorAngle" placeholder="Enter angle in radians">
+    <br>
+    <select id="sectorAreaUnit" class="unit-dropdown">
+        <option value="cm²">cm²</option>
+        <option value="m²">m²</option>
+    </select>
+    <br><br>
+    <button onclick="calculateCircularSectorArea()">Calculate Area</button>
+    <p id="circularSectorAreaResult"></p>
+</div>
+
+<!-- Rhombus Area -->
+<div id="rhombusForm" class="areaForm" style="display:none;">
+    <h3>Find Area of Rhombus</h3>
+    <img src="../images/area-of-rhombus-1629439606.png" alt="Area of Rhombus Formula" class="formula-image">
+    <p>Formula: ½ × d₁ × d₂</p>
+    <input type="number" id="rhombusDiagonal1" placeholder="Enter diagonal 1">
+    <input type="number" id="rhombusDiagonal2" placeholder="Enter diagonal 2">
+    <br>
+    <select id="rhombusAreaUnit" class="unit-dropdown">
+        <option value="cm²">cm²</option>
+        <option value="m²">m²</option>
+    </select>
+    <br><br>
+    <button onclick="calculateRhombusArea()">Calculate Area</button>
+    <p id="rhombusAreaResult"></p>
+</div>
+
+<!-- Parallelogram Area -->
+<div id="parallelogramForm" class="areaForm" style="display:none;">
+    <h3>Find Area of Parallelogram</h3>
+    <img src="../images/area-of-parallelogram-formula-1624367101.png" alt="Area of Parallelogram Formula" class="formula-image">
+    <p>Formula: base × height</p>
+    <input type="number" id="parallelogramBase" placeholder="Enter base">
+    <input type="number" id="parallelogramHeight" placeholder="Enter height">
+    <br>
+    <select id="parallelogramAreaUnit" class="unit-dropdown">
+        <option value="cm²">cm²</option>
+        <option value="m²">m²</option>
+    </select>
+    <br><br>
+    <button onclick="calculateParallelogramArea()">Calculate Area</button>
+    <p id="parallelogramAreaResult"></p>
+</div>
+
+<!-- Trapezoid Area -->
+<div id="trapezoidForm" class="areaForm" style="display:none;">
+    <h3>Find Area of Trapezoid</h3>
+    <img src="../images/area-of-trapezoid-1644815290.png" alt="Area of Trapezoid Formula" class="formula-image">
+    <p>Formula: ½ × (a + b) × height</p>
+    <input type="number" id="trapezoidBase1" placeholder="Enter base a">
+    <input type="number" id="trapezoidBase2" placeholder="Enter base b">
+    <input type="number" id="trapezoidHeight" placeholder="Enter height">
+    <br>
+    <select id="trapezoidAreaUnit" class="unit-dropdown">
+        <option value="cm²">cm²</option>
+        <option value="m²">m²</option>
+    </select>
+    <br><br>
+    <button onclick="calculateTrapezoidArea()">Calculate Area</button>
+    <p id="trapezoidAreaResult"></p>
+</div>
+
+<!-- Hexagon Area -->
+<div id="hexagonForm" class="areaForm" style="display:none;">
+    <h3>Find Area of Hexagon</h3>
+    <img src="../images/area-of-a-hexagon-02-1-1634184289.png" alt="Area of Hexagon Formula" class="formula-image">
+    <p>Formula: ½ × Perimeter × Apothem</p>
+    <input type="number" id="hexagonSide" placeholder="Enter side length">
+    <select id="hexagonAreaUnit" class="unit-dropdown">
+        <option value="cm²">cm²</option>
+        <option value="m²">m²</option>
+    </select>
+    <br><br>
+    <button onclick="calculateHexagonArea()">Calculate Area</button>
+    <p id="hexagonAreaResult"></p>
+</div>
+
+<!-- Octagon Area -->
+<div id="octagonForm" class="areaForm" style="display:none;">
+    <h3>Find Area of Octagon</h3>
+    <img src="../images/area-of-octagon-1631015071.png" alt="Area of Octagon Formula" class="formula-image">
+    <p>Formula: 2 × (1 + √2) × side²</p>
+    <input type="number" id="octagonSide" placeholder="Enter side length">
+    <select id="octagonAreaUnit" class="unit-dropdown">
+        <option value="cm²">cm²</option>
+        <option value="m²">m²</option>
+    </select>
+    <br><br>
+    <button onclick="calculateOctagonArea()">Calculate Area</button>
+    <p id="octagonAreaResult"></p>
+</div>
+
+<!-- Polygon Area -->
+<div id="polygonForm" class="areaForm" style="display:none;">
+    <h3>Find Area of Polygon</h3>
+    <img src="../images/polugon_area-removebg-preview.png" alt="Area of Polygon Formula" class="formula-image">
+    <p>Formula: ½ × Perimeter × Apothem</p>
+    <input type="number" id="polygonSide" placeholder="Enter side length">
+    <input type="number" id="polygonNumberOfSides" placeholder="Enter number of sides">
+    <br>
+    <select id="polygonAreaUnit" class="unit-dropdown">
+        <option value="cm²">cm²</option>
+        <option value="m²">m²</option>
+    </select>
+    <br><br>
+    <button onclick="calculatePolygonArea()">Calculate Area</button>
+    <p id="polygonAreaResult"></p>
+</div>
+
+<!-- Sphere Area -->
+<div id="sphereForm" class="areaForm" style="display:none;">
+    <h3>Find Area of Sphere</h3>
+    <img src="../images/surface-area-of-sphere-1629117550.png" alt="Area of Sphere Formula" class="formula-image">
+    <p>Formula: 4πr²</p>
+    <input type="number" id="sphereRadius" placeholder="Enter radius">
+    <select id="sphereAreaUnit" class="unit-dropdown">
+        <option value="cm²">cm²</option>
+        <option value="m²">m²</option>
+    </select>
+    <br><br>
+    <button onclick="calculateSphereArea()">Calculate Area</button>
+    <p id="sphereAreaResult"></p>
+</div>
+
+<!-- Cuboid Area -->
+<div id="cuboidForm" class="areaForm" style="display:none;">
+    <h3>Find Surface Area of Cuboid</h3>
+    <img src="../images/surface-area-of-cuboid-1645162164.png" alt="Area of Cuboid Formula" class="formula-image">
+    <p>Formula: 2(lw + lh + wh)</p>
+    <input type="number" id="cuboidLength" placeholder="Enter length">
+    <input type="number" id="cuboidWidth" placeholder="Enter width">
+    <input type="number" id="cuboidHeight" placeholder="Enter height">
+    <br>
+    <select id="cuboidAreaUnit" class="unit-dropdown">
+        <option value="cm²">cm²</option>
+        <option value="m²">m²</option>
+    </select>
+    <br><br>
+    <button onclick="calculateCuboidArea()">Calculate Surface Area</button>
+    <p id="cuboidAreaResult"></p>
+</div>
+
+<!-- Cylinder Area -->
+<div id="cylinderForm" class="areaForm" style="display:none;">
+    <h3>Find Surface Area of Cylinder</h3>
+    <img src="../images/Total-Surface-Area-of-Cylinder-removebg-preview.png" alt="Area of Cylinder Formula" class="formula-image">
+    <p>Formula: 2πr(h + r)</p>
+    <input type="number" id="cylinderRadius" placeholder="Enter radius">
+    <input type="number" id="cylinderHeight" placeholder="Enter height">
+    <br>
+    <select id="cylinderAreaUnit" class="unit-dropdown">
+        <option value="cm²">cm²</option>
+        <option value="m²">m²</option>
+    </select>
+    <br><br>
+    <button onclick="calculateCylinderArea()">Calculate Surface Area</button>
+    <p id="cylinderAreaResult"></p>
+</div>
+
+<!-- Cone Area -->
+<div id="coneForm" class="areaForm" style="display:none;">
+    <h3>Find Surface Area of Cone</h3>
+    <img src="../images/right-cone-1623056062-removebg-preview.png" alt="Area of Cone Formula" class="formula-image">
+    <p>Formula: πr(r + l)</p>
+    <input type="number" id="coneRadius" placeholder="Enter radius">
+    <input type="number" id="coneSlantHeight" placeholder="Enter slant height">
+    <br>
+    <select id="coneAreaUnit" class="unit-dropdown">
+        <option value="cm²">cm²</option>
+        <option value="m²">m²</option>
+    </select>
+    <br><br>
+    <button onclick="calculateConeArea()">Calculate Surface Area</button>
+    <p id="coneAreaResult"></p>
+</div>
+                
+        </div>
+  <!-- Perimeter Section -->
+  <div id="find_perimeter" class="section" style="display:none;">
+    <h2>Find Perimeter</h2>
+    <select id="perimeterOptions" onchange="showPerimeterForm(this.value)">
+        <option value="circle">Circle</option>
+        <option value="rectangle">Rectangle</option>
+        <option value="square">Square</option>
+        <option value="triangle">Triangle</option>
+        <option value="circular_sector">Circular Sector</option>
+        <option value="rhombus">Rhombus</option>
+        <option value="parallelogram">Parallelogram</option>
+        <option value="trapezoid">Trapezoid</option>
+        <option value="hexagon">Hexagon</option>
+        <option value="octagon">Octagon</option>
+        <option value="polygon">Polygon</option>
+        <option value="sphere">Sphere</option>
+        <option value="cuboid">Cuboid</option>
+        <option value="cylinder">Cylinder</option>
+        <option value="cone">Cone</option>
+    </select>
+
+    <!-- Circle Perimeter -->
+    <div id="circlePerimeterForm" class="perimeterForm" style="display:none;">
+        <h3>Find Circumference of Circle</h3>
+        <img src="../images/perimeter-of-circle-1623219525.png" alt="Circle Perimeter Formula" class="formula-image">
+        <p>Formula: 2πr</p>
+        <input type="number" id="circleRadiusPerimeter" placeholder="Enter radius" class="input-fields">
+        <select id="circleUnit" class="unit-dropdown">
+            <option value="cm">cm</option>
+            <option value="m">m</option>
+        </select>
+        <br><br>
+        <button onclick="calculateCirclePerimeter()">Calculate Circumference</button>
+        <p id="circlePerimeterResult"></p>
+    </div>
+
+    <!-- Rectangle Perimeter -->
+    <div id="rectanglePerimeterForm" class="perimeterForm" style="display:none;">
+        <h3>Find Perimeter of Rectangle</h3>
+        <img src="../images/Perimeter-of-a-Rectangle-removebg-preview.png" alt="Rectangle Perimeter Formula" class="formula-image">
+        <p>Formula: 2(l + w)</p>
+        <input type="number" id="rectanglePerimeterLength" placeholder="Enter length" class="input-fields">
+        <input type="number" id="rectanglePerimeterWidth" placeholder="Enter width" class="input-fields">
+        <br>
+        <select id="rectangleUnit" class="unit-dropdown">
+            <option value="cm">cm</option>
+            <option value="m">m</option>
+        </select>
+        <br><br>
+        <button onclick="calculateRectanglePerimeter()">Calculate Perimeter</button>
+        <p id="rectanglePerimeterResult"></p>
+    </div>
+
+    <!-- Square Perimeter -->
+    <div id="squarePerimeterForm" class="perimeterForm" style="display:none;">
+        <h3>Find Perimeter of Square</h3>
+        <img src="../images/perimeter-of-square-formula-1629104621.png" alt="Square Perimeter Formula" class="formula-image">
+        <p>Formula: 4 × side</p>
+        <input type="number" id="squareSide" placeholder="Enter side length" class="input-fields">
+        <select id="squareUnit" class="unit-dropdown">
+            <option value="cm">cm</option>
+            <option value="m">m</option>
+        </select>
+        <br><br>
+        <button onclick="calculateSquarePerimeter()">Calculate Perimeter</button>
+        <p id="squarePerimeterResult"></p>
+    </div>
+
+    <!-- Triangle Perimeter -->
+    <div id="trianglePerimeterForm" class="perimeterForm" style="display:none;">
+        <h3>Find Perimeter of Triangle</h3>
+        <img src="../images/perimeter-of-a-triangle-formula-1628237499.png" alt="Triangle Perimeter Formula" class="formula-image">
+        <p>Formula: a + b + c</p>
+        <input type="number" id="triangleSideA" placeholder="Enter side a" class="input-fields">
+        <input type="number" id="triangleSideB" placeholder="Enter side b" class="input-fields">
+        <input type="number" id="triangleSideC" placeholder="Enter side c" class="input-fields">
+        <br>
+        <select id="triangleUnit" class="unit-dropdown">
+            <option value="cm">cm</option>
+            <option value="m">m</option>
+        </select>
+        <br><br>
+        <button onclick="calculateTrianglePerimeter()">Calculate Perimeter</button>
+        <p id="trianglePerimeterResult"></p>
+    </div>
+
+    <!-- Circular Sector Perimeter -->
+    <div id="circular_sectorPerimeterForm" class="perimeterForm" style="display:none;">
+        <h3>Find Perimeter of Circular Sector</h3>
+        <img src="../images/p_sector-of-a-circle-1651034400.png" alt="Circular Sector Perimeter Formula" class="formula-image">
+        <p>Formula: r(θ + 2) (θ in radians)</p>
+        <input type="number" id="sectorPerimeterRadius" placeholder="Enter radius" class="input-fields">
+        <input type="number" id="sectorPerimeterAngle" placeholder="Enter angle in radians" class="input-fields">
+        <br>
+        <select id="sectorUnit" class="unit-dropdown">
+            <option value="cm">cm</option>
+            <option value="m">m</option>
+        </select>
+        <br><br>
+        <button onclick="calculateCircularSectorPerimeter()">Calculate Perimeter</button>
+        <p id="circularSectorPerimeterResult"></p>
+    </div>
+
+    <!-- Rhombus Perimeter -->
+    <div id="rhombusPerimeterForm" class="perimeterForm" style="display:none;">
+        <h3>Find Perimeter of Rhombus</h3>
+        <img src="../images/p_rhombus-1626061980.png" alt="Rhombus Perimeter Formula" class="formula-image">
+        <p>Formula: 4 × side</p>
+        <input type="number" id="rhombusSide" placeholder="Enter side length" class="input-fields">
+        <select id="rhombusUnit" class="unit-dropdown">
+            <option value="cm">cm</option>
+            <option value="m">m</option>
+        </select>
+        <br><br>
+        <button onclick="calculateRhombusPerimeter()">Calculate Perimeter</button>
+        <p id="rhombusPerimeterResult"></p>
+    </div>
+
+    <!-- Parallelogram Perimeter -->
+    <div id="parallelogramPerimeterForm" class="perimeterForm" style="display:none;">
+        <h3>Find Perimeter of Parallelogram</h3>
+        <img src="../images/formulas-to-find-perimeter-of-parallelogram-1621400912.png" alt="Parallelogram Perimeter Formula" class="formula-image">
+        <p>Formula: 2 × (base + side)</p>
+        <input type="number" id="parallelogramBase" placeholder="Enter base" class="input-fields">
+        <input type="number" id="parallelogramSide" placeholder="Enter side" class="input-fields">
+        <br>
+        <select id="parallelogramUnit" class="unit-dropdown">
+            <option value="cm">cm</option>
+            <option value="m">m</option>
+        </select>
+        <br><br>
+        <button onclick="calculateParallelogramPerimeter()">Calculate Perimeter</button>
+        <p id="parallelogramPerimeterResult"></p>
+    </div>
+
+    <!-- Trapezoid Perimeter -->
+    <div id="trapezoidPerimeterForm" class="perimeterForm" style="display:none;">
+        <h3>Find Perimeter of Trapezoid</h3>
+        <img src="../images/Perimeter-of-a-Trapezoid-removebg-preview.png" alt="Trapezoid Perimeter Formula" class="formula-image">
+        <p>Formula: a + b + c + d</p>
+        <input type="number" id="trapezoidSideA" placeholder="Enter side a" class="input-fields">
+        <input type="number" id="trapezoidSideB" placeholder="Enter side b" class="input-fields">
+        <input type="number" id="trapezoidSideC" placeholder="Enter side c" class="input-fields">
+        <input type="number" id="trapezoidSideD" placeholder="Enter side d" class="input-fields">
+        <br>
+        <select id="trapezoidUnit" class="unit-dropdown">
+            <option value="cm">cm</option>
+            <option value="m">m</option>
+        </select>
+        <br><br>
+        <button onclick="calculateTrapezoidPerimeter()">Calculate Perimeter</button>
+        <p id="trapezoidPerimeterResult"></p>
+    </div>
+
+    <!-- Hexagon Perimeter -->
+    <div id="hexagonPerimeterForm" class="perimeterForm" style="display:none;">
+        <h3>Find Perimeter of Hexagon</h3>
+        <img src="../images/per_hexagon-formula-1624857978.png" alt="Hexagon Perimeter Formula" class="formula-image">
+        <p>Formula: 6 × side</p>
+        <input type="number" id="hexagonSide" placeholder="Enter side length" class="input-fields">
+        <select id="hexagonUnit" class="unit-dropdown">
+            <option value="cm">cm</option>
+            <option value="m">m</option>
+        </select>
+        <br><br>
+        <button onclick="calculateHexagonPerimeter()">Calculate Perimeter</button>
+        <p id="hexagonPerimeterResult"></p>
+    </div>
+
+    <!-- Octagon Perimeter -->
+    <div id="octagonPerimeterForm" class="perimeterForm" style="display:none;">
+        <h3>Find Perimeter of Octagon</h3>
+        <img src="../images/Perimeter-of-Octagon-Formula-removebg-preview.png" alt="Octagon Perimeter Formula" class="formula-image">
+        <p>Formula: 8 × side</p>
+        <input type="number" id="octagonSide" placeholder="Enter side length" class="input-fields">
+        <select id="octagonUnit" class="unit-dropdown">
+            <option value="cm">cm</option>
+            <option value="m">m</option>
+        </select>
+        <br><br>
+        <button onclick="calculateOctagonPerimeter()">Calculate Perimeter</button>
+        <p id="octagonPerimeterResult"></p>
+    </div>
+
+    <!-- Polygon Perimeter -->
+    <div id="polygonPerimeterForm" class="perimeterForm" style="display:none;">
+        <h3>Find Perimeter of Polygon</h3>
+        <img src="../images/polygon_perimeter.png" alt="Polygon Perimeter Formula" class="formula-image">
+        <p>Formula: number of sides × side length</p>
+        <input type="number" id="polygonSide" placeholder="Enter side length" class="input-fields">
+        <input type="number" id="polygonNumberOfSides" placeholder="Enter number of sides" class="input-fields">
+        <br>
+        <select id="polygonUnit" class="unit-dropdown">
+            <option value="cm">cm</option>
+            <option value="m">m</option>
+        </select>
+        <br><br>
+        <button onclick="calculatePolygonPerimeter()">Calculate Perimeter</button>
+        <p id="polygonPerimeterResult"></p>
+    </div>
+
+    <!-- Sphere Perimeter -->
+    <div id="spherePerimeterForm" class="perimeterForm" style="display:none;">
+        <h3>Find Circumference of Sphere</h3>
+        <img src="../images/p_sphere-1643269844.png" alt="Sphere Perimeter Formula" class="formula-image">
+        <p>Formula: 2πr</p>
+        <input type="number" id="sphereRadius" placeholder="Enter radius" class="input-fields">
+        <select id="sphereUnit" class="unit-dropdown">
+            <option value="cm">cm</option>
+            <option value="m">m</option>
+        </select>
+        <br><br>
+        <button onclick="calculateSpherePerimeter()">Calculate Circumference</button>
+        <p id="spherePerimeterResult"></p>
+    </div>
+
+    <!-- Cuboid Perimeter -->
+    <div id="cuboidPerimeterForm" class="perimeterForm" style="display:none;">
+        <h3>Find Sum of Edge Lengths of Cuboid</h3>
+        <img src="../images/_Perimeter_cuboid-dimensions-1-1621492112.png" alt="Cuboid Perimeter Formula" class="formula-image">
+        <p>Formula: 4 × (length + width + height)</p>
+        <input type="number" id="cuboidLength" placeholder="Enter length" class="input-fields">
+        <input type="number" id="cuboidWidth" placeholder="Enter width" class="input-fields">
+        <input type="number" id="cuboidHeight" placeholder="Enter height" class="input-fields">
+        <br>
+        <select id="cuboidUnit" class="unit-dropdown">
+            <option value="cm">cm</option>
+            <option value="m">m</option>
+        </select>
+        <br><br>
+        <button onclick="calculateCuboidPerimeter()">Calculate Sum</button>
+        <p id="cuboidPerimeterResult"></p>
+    </div>
+
+    <!-- Cylinder Perimeter -->
+    <div id="cylinderPerimeterForm" class="perimeterForm" style="display:none;">
+        <h3>Find Circumference of Cylinder Base</h3>
+        <img src="../images/perimter_cylinder-formulas-removebg-preview.png" alt="Cylinder Perimeter Formula" class="formula-image">
+        <p>Formula: 2πr</p>
+        <input type="number" id="cylinderRadius" placeholder="Enter radius" class="input-fields">
+        <select id="cylinderUnit" class="unit-dropdown">
+            <option value="cm">cm</option>
+            <option value="m">m</option>
+        </select>
+        <br><br>
+        <button onclick="calculateCylinderPerimeter()">Calculate Circumference</button>
+        <p id="cylinderPerimeterResult"></p>
+    </div>
+
+    <!-- Cone Perimeter -->
+    <div id="conePerimeterForm" class="perimeterForm" style="display:none;">
+        <h3>Find Circumference of Cone Base</h3>
+        <img src="../images/perimeter_Cone.png" alt="Cone Perimeter Formula" class="formula-image">
+        <p>Formula: 2πr</p>
+        <input type="number" id="coneRadius" placeholder="Enter radius" class="input-fields">
+        <select id="coneUnit" class="unit-dropdown">
+            <option value="cm">cm</option>
+            <option value="m">m</option>
+        </select>
+        <br><br>
+        <button onclick="calculateConePerimeter()">Calculate Circumference</button>
+        <p id="conePerimeterResult"></p>
+    </div>
+</div>
+
+<!-- Volume Section -->
+<div id="find_volume" class="section" style="display:none;">
+    <h2>Find Volume</h2>
+    <select id="volumeOptions" onchange="showVolumeForm(this.value)">
+        <option value="cuboid">Rectangular Solid or Cuboid</option>
+        <option value="cube">Cube</option>
+        <option value="cylinder">Cylinder</option>
+        <option value="prism">Prism</option>
+        <option value="sphere">Sphere</option>
+        <option value="pyramid">Pyramid</option>
+        <option value="cone">Right Circular Cone</option>
+        <option value="square_pyramid">Square or Rectangular Pyramid</option>
+        <option value="ellipsoid">Ellipsoid</option>
+        <option value="tetrahedron">Tetrahedron</option>
+    </select>
+
+    <!-- Cuboid Volume -->
+    <div id="cuboidVolumeForm" class="volumeForm" style="display:none;">
+        <h3>Find Volume of Cuboid</h3>
+        <img src="../images/Volume-Of-Cuboid-removebg-preview.png" alt="Cuboid Volume Formula" class="formula-image">
+        <p>Formula: l × w × h</p>
+        <input type="number" id="cuboidLength" placeholder="Enter length" class="input-fields">
+        <input type="number" id="cuboidWidth" placeholder="Enter width" class="input-fields">
+        <input type="number" id="cuboidHeight" placeholder="Enter height" class="input-fields">
+        <br>
+        <select id="cuboidVolumeUnit" class="unit-dropdown">
+            <option value="cm³">cm³</option>
+            <option value="m³">m³</option>
+        </select>
+        <br><br>
+        <button class="volumeButton" onclick="calculateCuboidVolume()">Calculate Volume</button>
+        <p id="cuboidVolumeResult"></p>
+    </div>
+
+    <!-- Cube Volume -->
+    <div id="cubeVolumeForm" class="volumeForm" style="display:none;">
+        <h3>Find Volume of Cube</h3>
+        <img src="../images/volume-of-cube-1629102515.png" alt="Cube Volume Formula" class="formula-image">
+        <p>Formula: s³</p>
+        <input type="number" id="cubeSide" placeholder="Enter side length" class="input-fields">
+        <select id="cubeVolumeUnit" class="unit-dropdown">
+            <option value="cm³">cm³</option>
+            <option value="m³">m³</option>
+        </select>
+        <br><br>
+        <button class="volumeButton" onclick="calculateCubeVolume()">Calculate Volume</button>
+        <p id="cubeVolumeResult"></p>
+    </div>
+
+    <!-- Cylinder Volume -->
+    <div id="cylinderVolumeForm" class="volumeForm" style="display:none;">
+        <h3>Find Volume of Cylinder</h3>
+        <img src="../images/formulas-to-find-the-volume-of-a-cylinder-1620796016.png" alt="Cylinder Volume Formula" class="formula-image">
+        <p>Formula: πr²h</p>
+        <input type="number" id="cylinderRadius" placeholder="Enter radius" class="input-fields">
+        <input type="number" id="cylinderHeight" placeholder="Enter height" class="input-fields">
+        <br>
+        <select id="cylinderVolumeUnit" class="unit-dropdown">
+            <option value="cm³">cm³</option>
+            <option value="m³">m³</option>
+        </select>
+        <br><br>
+        <button class="volumeButton" onclick="calculateCylinderVolume()">Calculate Volume</button>
+        <p id="cylinderVolumeResult"></p>
+    </div>
+
+    <!-- Prism Volume -->
+    <div id="prismVolumeForm" class="volumeForm" style="display:none;">
+        <h3>Find Volume of Prism</h3>
+        <img src="../images/volume-of-prism-types-of-prisms-1622222815.png" alt="Prism Volume Formula" class="formula-image">
+        <p>Formula: B × h (B = area of the base)</p>
+        <input type="number" id="prismBaseArea" placeholder="Enter base area" class="input-fields">
+        <input type="number" id="prismHeight" placeholder="Enter height" class="input-fields">
+        <br>
+        <select id="prismVolumeUnit" class="unit-dropdown">
+            <option value="cm³">cm³</option>
+            <option value="m³">m³</option>
+        </select>
+        <br><br>
+        <button class="volumeButton" onclick="calculatePrismVolume()">Calculate Volume</button>
+        <p id="prismVolumeResult"></p>
+    </div>
+
+    <!-- Sphere Volume -->
+    <div id="sphereVolumeForm" class="volumeForm" style="display:none;">
+        <h3>Find Volume of Sphere</h3>
+        <img src="../images/surface-area-of-sphere-1629117550.png" alt="Sphere Volume Formula" class="formula-image">
+        <p>Formula: ⁴⁄₃πr³</p>
+        <input type="number" id="sphereVolumeRadius" placeholder="Enter radius" class="input-fields">
+        <select id="sphereVolumeUnit" class="unit-dropdown">
+            <option value="cm³">cm³</option>
+            <option value="m³">m³</option>
+        </select>
+        <br><br>
+        <button class="volumeButton" onclick="calculateSphereVolume()">Calculate Volume</button>
+        <p id="sphereVolumeResult"></p>
+    </div>
+
+    <!-- Pyramid Volume -->
+    <div id="pyramidVolumeForm" class="volumeForm" style="display:none;">
+        <h3>Find Volume of Pyramid</h3>
+        <img src="../images/volume-of-pyramid-formula-02-1637911900.png" alt="Pyramid Volume Formula" class="formula-image">
+        <p>Formula: ¹⁄₃Bh (B = area of the base)</p>
+        <input type="number" id="pyramidBaseArea" placeholder="Enter base area" class="input-fields">
+        <input type="number" id="pyramidHeight" placeholder="Enter height" class="input-fields">
+        <br>
+        <select id="pyramidVolumeUnit" class="unit-dropdown">
+            <option value="cm³">cm³</option>
+            <option value="m³">m³</option>
+        </select>
+        <br><br>
+        <button class="volumeButton" onclick="calculatePyramidVolume()">Calculate Volume</button>
+        <p id="pyramidVolumeResult"></p>
+    </div>
+
+    <!-- Right Circular Cone Volume -->
+    <div id="coneVolumeForm" class="volumeForm" style="display:none;">
+        <h3>Find Volume of Right Circular Cone</h3>
+        <img src="../images/volume-of-a-cylinder-and-right-circular-cone-1622092158.png" alt="Right Circular Cone Volume Formula" class="formula-image">
+        <p>Formula: ¹⁄₃πr²h</p>
+        <input type="number" id="coneRadius" placeholder="Enter radius" class="input-fields">
+        <input type="number" id="coneHeight" placeholder="Enter height" class="input-fields">
+        <br>
+        <select id="coneVolumeUnit" class="unit-dropdown">
+            <option value="cm³">cm³</option>
+            <option value="m³">m³</option>
+        </select>
+        <br><br>
+        <button class="volumeButton" onclick="calculateConeVolume()">Calculate Volume</button>
+        <p id="coneVolumeResult"></p>
+    </div>
+
+    <!-- Square or Rectangular Pyramid Volume -->
+    <div id="square_pyramidVolumeForm" class="volumeForm" style="display:none;">
+        <h3>Find Volume of Square or Rectangular Pyramid</h3>
+        <img src="../images/volume-of-a-rectangular-pyramid-formula-1622286510.png" alt="Square Pyramid Volume Formula" class="formula-image">
+        <p>Formula: ¹⁄₃LWH</p>
+        <input type="number" id="squarePyramidLength" placeholder="Enter length" class="input-fields">
+        <input type="number" id="squarePyramidWidth" placeholder="Enter width" class="input-fields">
+        <input type="number" id="squarePyramidHeight" placeholder="Enter height" class="input-fields">
+        <br>
+        <select id="squarePyramidVolumeUnit" class="unit-dropdown">
+            <option value="cm³">cm³</option>
+            <option value="m³">m³</option>
+        </select>
+        <br><br>
+        <button class="volumeButton" onclick="calculateSquarePyramidVolume()">Calculate Volume</button>
+        <p id="squarePyramidVolumeResult"></p>
+    </div>
+
+    <!-- Ellipsoid Volume -->
+    <div id="ellipsoidVolumeForm" class="volumeForm" style="display:none;">
+        <h3>Find Volume of Ellipsoid</h3>
+        <img src="../images/figura_200x200_elipsoide.png" alt="Ellipsoid Volume Formula" class="formula-image">
+        <p>Formula: ⁴⁄₃πabc (a, b, c are the semi-principal axes)</p>
+        <input type="number" id="ellipsoidA" placeholder="Enter semi-principal axis a" class="input-fields">
+        <input type="number" id="ellipsoidB" placeholder="Enter semi-principal axis b" class="input-fields">
+        <input type="number" id="ellipsoidC" placeholder="Enter semi-principal axis c" class="input-fields">
+        <br>
+        <select id="ellipsoidVolumeUnit" class="unit-dropdown">
+            <option value="cm³">cm³</option>
+            <option value="m³">m³</option>
+        </select>
+        <br><br>
+        <button class="volumeButton" onclick="calculateEllipsoidVolume()">Calculate Volume</button>
+        <p id="ellipsoidVolumeResult"></p>
+    </div>
+
+    <!-- Tetrahedron Volume -->
+    <div id="tetrahedronVolumeForm" class="volumeForm" style="display:none;">
+        <h3>Find Volume of Tetrahedron</h3>
+        <img src="../images/Volume-of-Tetrahedron-removebg-preview.png" alt="Tetrahedron Volume Formula" class="formula-image">
+        <p>Formula: ¹⁄₆a³√2</p>
+        <input type="number" id="tetrahedronSide" placeholder="Enter side length" class="input-fields">
+        <select id="tetrahedronVolumeUnit" class="unit-dropdown">
+            <option value="cm³">cm³</option>
+            <option value="m³">m³</option>
+        </select>
+        <br><br>
+        <button class="volumeButton" onclick="calculateTetrahedronVolume()">Calculate Volume</button>
+        <p id="tetrahedronVolumeResult"></p>
+    </div>
+</div>
+
+            
+
+        
+
+    </div>
+    <script>
+        // JavaScript functions for navigation
+        function goBack() {
+            window.location.href = "../html/index.html";
+        }
+    </script>
+</body>
+</html>

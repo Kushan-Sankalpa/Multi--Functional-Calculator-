@@ -1,0 +1,139 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.sidebar {
+    width: 200px;
+    height: 100%;
+    background-color: #343a40;
+    color: white;
+    position: fixed;
+    padding-top: 20px;
+}
+
+.sidebar h2 {
+    text-align: center;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #495057;
+}
+
+.sidebar ul li:hover,
+.sidebar ul li.active {
+    background-color: #007BFF;
+}
+
+.content {
+    margin-left: 200px;
+    padding: 20px;
+}
+
+.section {
+    display: none;
+}
+
+/* Align the areaForm, perimeterForm, and volumeForm to center */
+.areaForm, .perimeterForm, .volumeForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.areaForm input, 
+.perimeterForm input, 
+.volumeForm input, 
+.areaForm select, 
+.perimeterForm select, 
+.volumeForm select {
+    padding: 10px;
+    width: 50%;
+    margin-bottom: 10px;
+}
+
+.areaForm button, 
+.perimeterForm button, 
+.volumeButton {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.areaForm button:hover, 
+.perimeterForm button:hover, 
+.volumeButton:hover {
+    background-color: #0056b3;
+}
+
+.back-button {
+    margin-top: 20px;
+    margin-left: 20px;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.back-button:hover {
+    background-color: #0056b3;
+}
+
+.formula-image {
+    max-width: 45%; /* Adjusted to ensure images scale properly */
+    height: auto;
+    margin-bottom: 10px;
+}
+
+/* Ensure everything is centered for smaller screens */
+@media (max-width: 600px) {
+    .formula-image {
+        width: 80%; 
+    }
+
+    .areaForm input, 
+    .areaForm select, 
+    .areaForm button, 
+    .perimeterForm input, 
+    .perimeterForm select, 
+    .perimeterForm button, 
+    .volumeForm input, 
+    .volumeForm select, 
+    .volumeForm button {
+        width: 90%; 
+        margin: 10px auto;
+    }
+}
+
+/* Optional: Add some spacing to buttons */
+button {
+    margin-top: 10px;
+    padding: 10px;
+}
+
+/* More specific style for the select element */
+select.unit-dropdown {
+    font-size: 12px;  /* Make the font smaller */
+    padding: 4px;     /* Adjust padding to make it smaller */
+    width: auto;      /* Set the width to auto to fit content */
+    height: 30px;     /* Adjust the height if necessary */
+    border-radius: 5px; /* Optional: for a rounded look */
+}
